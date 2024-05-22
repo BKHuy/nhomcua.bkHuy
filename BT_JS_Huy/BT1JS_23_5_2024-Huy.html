@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>btJS</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div>
+        <label>Nhap ten: </label>
+        <input type="text" id="ten" name="ten" placeholder="nhap ten cua ban" required><br><br>
+        <label>Nhap tuoi: </label>
+        <input type="number" id="tuoi" name="tuoi" placeholder="nhap tuoi cua ban" required><br><br>
+        <button onclick="hienthiTenTuoi()">Hien thi</button>
+    </div>
+    <script>
+        function hienthiTenTuoi() {
+            // lấy dữ liệu từ id
+            var ten = document.getElementById("ten").value;
+            var tuoi = document.getElementById("tuoi").value;
+            // Hiển thị tên và tuổi ra màn hình
+            document.write("<strong style='color: black;'> Ten: " + ten + "</strong><br>");
+            document.write("<span style='text-decoration: underline;'>Tuoi: " + tuoi + "</span>")
+        }
+    </script>
+</body>
+</html>
