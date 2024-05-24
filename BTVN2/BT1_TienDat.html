@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>Nhập tên của bạn: </span>
+    <input type="text" id="ten" name="ten" required><br><br>
+    <span>Nhập tuổi của bạn: </span>
+    <input type="number" id="tuoi" name="tuoi" required><br><br>
+    <button onclick="hienthi()">Hiển Thị</button>
+
+    <script>
+        function hienthi() {
+            var ten = document.getElementById("ten").value;
+            var tuoi = document.getElementById("tuoi").value;
+
+            document.write("<strong style='color: black;'> Ten: " + ten + "</strong><br>");
+            document.write("<p style='text-decoration: underline;'>Tuoi: " + tuoi + "</p>")
+        }
+    </script>
+</body>
+</html>
