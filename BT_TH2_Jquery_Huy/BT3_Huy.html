@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Học web chuẩn cùng Huy</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #accordion {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+    }
+    /* 
+    .ui-accordion-header-active {
+        background-color: #19a046 !important;
+    } */
+
+    .box {
+        border: 3px solid #eee;
+        display: none;
+        height: 100px;
+        margin-top: 5px;
+        padding: 10px;
+        width: 220px;
+    }
+</style>
+<script>
+    $(function() {
+        // Sử dụng jQuery UI accordion
+        $("#accordion").accordion({
+            header: "h3",
+            collapsible: true,
+            active: false,
+            heightStyle: "content"
+        });
+    });
+</script>
+</head>
+<body>
+    <div id="accordion">
+        <h2>Họ tên đầy đủ của Huy là:</h2>
+        <h3>1</h3>
+        <div class="box">Bùi</div>
+        <h3>2</h3>
+        <div class="box">Khắc</div>
+        <h3>3</h3>
+        <div class="box">Huy</div>
+    </div>
+</body>
+</html>
