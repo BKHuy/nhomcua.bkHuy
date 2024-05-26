@@ -1,0 +1,30 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BT1 Jquery</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(function(){
+            $('#button').on('click', function() {
+                // Thay đổi nội dung của div khi nút được nhấp
+                $('#content').html('nội dung đã thay đổi');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="box">
+        <h3>Title</h3>
+        <div id="content">nội dung ban đầu chưa được thay</div>
+        </div>
+        <button id="button">Click</button>
+    </div>
+</body>
+<script>
+    // document.getElementById("button").addEventListener("click", function() {
+    //     document.getElementById("content").innerHTML = "đã thay đổi nội dung";
+    // });
+</script>
+</html>

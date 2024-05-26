@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTJS4</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="button" onclick="showContent()" name="welcome" value="Welcome">
+
+    <input type="text" id="msg" name="msg" value="Welcome to">
+    <script>
+        function showContent() {
+            var vd = document.getElementById("msg").value;
+
+            document.write("<input type='text' id='vd' name='vd' value='" + vd + "'>");
+        }
+    </script>
+</body>
+</html>
