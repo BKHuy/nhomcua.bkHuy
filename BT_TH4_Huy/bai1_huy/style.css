@@ -1,0 +1,10 @@
+/* CSS cơ bản cho giao diện */
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+input[type=text], input[type=date] { width: 100%; padding: 8px; margin: 5px 0; }
+button { padding: 8px 16px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+button:hover { background-color: #45a049; }
+.delete-btn { background-color: #f44336; }
+.delete-btn:hover { background-color: #e53935; }
+.edit-btn { background-color: #ff9800; margin: 10px; }
+.edit-btn:hover { background-color: #fb8c00; }

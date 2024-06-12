@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initialscale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ứng dụng quản lý sinh viên</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Thêm hoặc chỉnh sửa sinh viên</h2>
+    <form id="formSinhVien">
+        Họ tên: <input type="text" id="hoTen" required><br><br>
+        Mã SV: <input type="text" id="maSV" required><br><br>
+        Ngày sinh: <input type="text" id="ngaySinh" required><br><br>
+        Lớp: <input type="text" id="lop" required><br><br>
+        <button type="submit" id="submitButton">Thêm</button>
+    </form>
+    <h2>Danh sách sinh viên</h2>
+    <table id="bangSinhVien">
+        <thead>
+            <tr>
+                <th>Họ tên</th>
+                <th>Mã SV</th>
+                <th>Ngày sinh</th>
+                <th>Lớp</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        let danhSach = [];
+        let editingIndex = null;
+
+        document.getElementById("formSinhVien").addEventListener("submit", function(event) {
+            event.preventDefault(); // Ngăn chặn form submit mặc định
+            
+            // Lấy dữ liệu từ form
+            let hoTen = document.getElementById("hoTen").value;
+            let maSV = document.getElementById("maSV").value;
+            let ngaySinh = document.getElementById("ngaySinh").value;
+            let lop = document.getElementById("lop").value;
+
+            if (editingIndex === null) {
+                // Thêm sinh viên mới vào danh sách
+                danhSach.push({ hoTen, maSV, ngaySinh, lop });
+            } else {
+                // Cập nhật thông tin sinh viên
+                danhSach[editingIndex] = { hoTen, maSV, ngaySinh, lop };
+                editingIndex = null;
+                document.getElementById("submitButton").textContent = "Thêm";
+            }
+            
+            // Lưu danh sách mới vào data.json (giả lập)
+            saveToDataJson();
+
+            // Cập nhật lại bảng
+            hienThiDanhSachSinhVien();
+            
+            // Reset form
+            this.reset();
+        });
+
+        function hienThiDanhSachSinhVien() {
+            let bangSinhVien = document.querySelector("#bangSinhVien tbody");
+            
+            // Xóa nội dung bảng hiện tại
+            bangSinhVien.innerHTML = "";
+            
+            // Duyệt qua danh sách sinh viên và thêm vào bảng
+            danhSach.forEach((sinhVien, index) => {
+                let row = bangSinhVien.insertRow();
+                
+                row.insertCell(0).textContent = sinhVien.hoTen;
+                row.insertCell(1).textContent = sinhVien.maSV;
+                row.insertCell(2).textContent = sinhVien.ngaySinh;
+                row.insertCell(3).textContent = sinhVien.lop;
+                
+                let hanhDongCell = row.insertCell(4);
+
+                let editButton = document.createElement("button");
+                editButton.textContent = "Sửa";
+                editButton.classList.add("edit-btn");
+                editButton.onclick = () => {
+                    // Điền thông tin sinh viên vào form để sửa
+                    document.getElementById("hoTen").value = sinhVien.hoTen;
+                    document.getElementById("maSV").value = sinhVien.maSV;
+                    document.getElementById("ngaySinh").value = sinhVien.ngaySinh;
+                    document.getElementById("lop").value = sinhVien.lop;
+                    editingIndex = index;
+                    document.getElementById("submitButton").textContent = "Cập nhật";
+                };
+                hanhDongCell.appendChild(editButton);
+
+                let deleteButton = document.createElement("button");
+                deleteButton.textContent = "Xóa";
+                deleteButton.classList.add("delete-btn");
+                deleteButton.onclick = () => {
+                    // Xóa sinh viên khỏi danh sách
+                    danhSach.splice(index, 1);
+                    // Cập nhật lại data.json (giả lập)
+                    saveToDataJson();
+                    // Cập nhật lại hiển thị
+                    hienThiDanhSachSinhVien();
+                };
+                hanhDongCell.appendChild(deleteButton);
+            });
+        }
+
+        function loadFromDataJson() {
+            fetch("data.json")
+                .then(response => response.json())
+                .then(data => {
+                    danhSach = data;
+                    hienThiDanhSachSinhVien();
+                })
+                .catch(error => console.error("Lỗi khi tải data.json:", error));
+        }
+
+        function saveToDataJson() {
+            // API giả lập cho việc ghi file, cần backend hỗ trợ hoặc môi trường giả lập như json-server
+            fetch("save-data.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(danhSach)
+            }).catch(error => console.error("Lỗi khi lưu data.json:", error));
+        }
+
+        // Gọi hàm tải danh sách khi trang tải
+        loadFromDataJson();
+    </script>
+</body>
+</html>

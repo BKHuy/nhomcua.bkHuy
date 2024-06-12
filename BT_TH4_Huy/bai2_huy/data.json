@@ -1,0 +1,20 @@
+{
+    "classes":[
+        {
+            "className": "K64KTPM1",
+            "students": 
+            [
+                { "fullName": "Nguyễn Văn A", "studentId": "123456", "dateOfBirth": "2002-05-15" },
+                { "fullName": "Trần Thị B", "studentId": "654321", "dateOfBirth": "2003-08-22" }
+            ]
+        },
+        {
+            "className": "K64KTPM2",
+            "students": 
+            [
+                { "fullName": "Lê Văn C", "studentId": "987654", "dateOfBirth": "2002-12-10"},
+                { "fullName": "Phạm Thị D", "studentId": "456789", "dateOfBirth": "2003-03-05" }
+            ]
+        }
+    ]
+}
